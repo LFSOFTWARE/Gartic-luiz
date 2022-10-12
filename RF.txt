@@ -1,0 +1,14 @@
+funcionalidade:
+	lapis
+	caneta
+	pinsel
+	formas:
+		quadrado
+		triangulo	
+		circulo
+
+	borracha
+	chat
+	gerar palavras
+	sistema de usuario
+	tempo

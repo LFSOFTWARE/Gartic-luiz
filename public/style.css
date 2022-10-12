@@ -6,5 +6,76 @@
 
 
 #canvas {
+}
+
+.header {
+  position: absolute;
+  height: 80px;
+  width: 100%;
+  background-color: #080032d9;
+}
+
+.container {
+  display: flex;
+}
+
+.table{
+  margin-top: 80px;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tools{
+  width: 200px;
+  margin-top: 80px;
+  border-right: 1px solid black;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #5992ff;
+}
+
+.btn{
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  background-color:white;
   border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover{
+  background-color:rgba(255, 255, 255, 0.527);
+}
+
+
+.red{
+  background-color:red;
+}
+
+.blue{
+  background-color:blue;
+}
+.green{
+  background-color:green;
+}
+.gray{
+  background-color:gray;
+}
+.yellow{
+  background-color: yellow;
+}
+.black{
+  background-color:black;
+}
+.white{
+  background-color:white;
+}
+.marrom{
+  background-color: 	#8E236B;
 }

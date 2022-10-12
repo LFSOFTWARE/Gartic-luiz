@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
   //Resizing 
 
   canvas.height = window.innerHeight
-  canvas.width = window.innerWidth
+  canvas.width = window.innerWidth * 0.6  
 
   let paiting = false
 
