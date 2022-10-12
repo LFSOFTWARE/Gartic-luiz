@@ -1,10 +1,10 @@
 funcionalidade:
-	lapis
-	caneta
-	pinsel
+	lapis: ok
+	caneta:  
+	pinsel: 
+	colors: ok
 	formas:
-		quadrado
-		triangulo	
+		quadrado 
 		circulo
 
 	borracha

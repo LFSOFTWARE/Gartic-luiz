@@ -19,7 +19,7 @@ app.get('/', (req, res) => res.render('index.html'))
 
 io.on('connection', (socket) => {
   socket.on('draw', (e) => {
-    io.emit('desenhe',{cord: e , user: socket.id, color: e.color, widthStroke: e.widthStroke});
+    io.emit('desenhe',{cord: e , user: socket.id, color: e.color, widthStroke: e.widthStroke, type: e.type});
   });
   socket.on('finish', (e) => {
     io.emit('finish',e);
