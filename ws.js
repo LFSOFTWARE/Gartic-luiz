@@ -19,10 +19,13 @@ app.get('/', (req, res) => res.render('index.html'))
 
 io.on('connection', (socket) => {
   socket.on('draw', (e) => {
-    io.emit('desenhe',{cord: e , user: socket.id});
+    io.emit('desenhe',{cord: e , user: socket.id, color: e.color, widthStroke: e.widthStroke});
   });
   socket.on('finish', (e) => {
     io.emit('finish',e);
+  });
+  socket.on('reload', (e) => {
+    io.emit('reload',e);
   });
 });
 

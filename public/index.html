@@ -17,72 +17,74 @@
   <div class="container">
     <canvas id="canvas"></canvas>
     <div class="tools">
-      <div>
-        <div class="btn">
-          <i class="fa-solid fa-pen"></i>
-        </div>
-        <div class="btn">
-          <i class="fa-solid fa-eraser"></i>
-        </div>
-        <div class="btn">
-  
-        </div>
-        <div class="btn">
-  
-        </div>
-        <div class="btn">
-  
-        </div>
-        <div class="btn red">
-
-        </div>
-        <div class="btn blue">
-  
-        </div>
-        <div class="btn green">
-  
-        </div>
-        <div class="btn gray">
-  
-        </div>
+        <div class="flex">
+          <div>
+            <div class="btn">
+              <i class="fa-solid fa-pen"></i>
+            </div>
+            <div class="btn">
+              <i class="fa-solid fa-eraser"></i>
+            </div>
+            <div class="btn">
       
-      </div>
-      <div>
-        <div class="btn">
-          <i class="fa-regular fa-square"></i>
+            </div>
+            <div class="btn">
+      
+            </div>
+            <div class="btn">
+      
+            </div>
+            <div class="btn red" onclick="changeColor('red')">
+    
+            </div>
+            <div class="btn blue" onclick="changeColor('blue')">
+      
+            </div>
+            <div class="btn green" onclick="changeColor('green')">
+      
+            </div>
+            <div class="btn gray" onclick="changeColor('gray')">
+            </div>
+          </div>
+          <div>
+            <div class="btn">
+              <i class="fa-regular fa-square"></i>
+            </div>
+            <div class="btn">
+              <i class="fa-regular fa-circle"></i>
+            </div>
+            <div class="btn">
+              <i class="fa-light fa-triangle"></i>
+            </div>
+            <div class="btn">
+      
+            </div>
+            <div class="btn">
+      
+            </div>
+            <div class="btn yellow" onclick="changeColor('yellow')">
+      
+            </div>
+            <div class="btn black" onclick="changeColor('black')">
+      
+            </div>
+            <div class="btn white" onclick="changeColor('white')">
+      
+            </div>
+            <div class="btn marrom">
+      
+            </div>
+    
+          </div>
         </div>
-        <div class="btn">
-          <i class="fa-regular fa-circle"></i>
-        </div>
-        <div class="btn">
-          <i class="fa-light fa-triangle"></i>
-        </div>
-        <div class="btn">
-  
-        </div>
-        <div class="btn">
-  
-        </div>
-        <div class="btn yellow">
-  
-        </div>
-        <div class="btn black">
-  
-        </div>
-        <div class="btn white">
-  
-        </div>
-        <div class="btn marrom">
-  
-        </div>
+      <input class="btnRnge" type="range" min="1" value="5" max="30" step="1" onchange="changeStroke(this.value)">
 
-      </div>
     </div>
     <div class="table">
       <h3>Gartic</h3>
      
     </div>
   </div>
-  <script src="index.js"></script>
+  <script src="index.js" type="text/javascript"></script>
 </body>
 </html>
