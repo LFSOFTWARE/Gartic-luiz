@@ -16,16 +16,54 @@ app.use(express.static("public"));
 app.set('port', process.env.port || 8000)
 
 app.get('/', (req, res) => res.render('index.html'))
+let secretWord = undefined;
+const GenereteWord = () => {
+  const words = [
+    {
+      word: 'carro',
+      dica: ['tem roda', 'tem porta'],
+      categoria: 'automores',
+    },
+    {
+      word: 'banana',
+      dica: ['é amarelo', 'animal come'],
+      categoria: 'fruta',
 
+    },
+    {
+      word: 'arma',
+      dica: ['tem ferro', 'é preto'],
+      categoria: 'ferramenta',
+
+    },
+    {
+      word: 'aviao',
+      dica: ['tem asas', 'tem motor'],
+      categoria: 'veiculo aero',
+
+    },
+  ]
+  const word = words[Math.floor(Math.random() * words.length)]
+  secretWord = word
+  return word
+}
 io.on('connection', (socket) => {
   socket.on('draw', (e) => {
-    io.emit('desenhe',{cord: e , user: socket.id, color: e.color, widthStroke: e.widthStroke, type: e.type});
+    io.emit('desenhe', { cord: e, user: socket.id, color: e.color, widthStroke: e.widthStroke, type: e.type, coodinates: e.coodinates });
   });
+  socket.on('makeWord', () => {
+    io.emit('word', { word: GenereteWord() });
+  })
   socket.on('finish', (e) => {
-    io.emit('finish',e);
+    io.emit('finish', e);
   });
   socket.on('reload', (e) => {
-    io.emit('reload',e);
+    io.emit('reload', e);
+  });
+  socket.on('answer', (e) => {
+    console.log(secretWord);
+    console.log(e);
+    io.emit('feed', { response:secretWord.word === e.answer, try:e, user: socket.id})
   });
 });
 
