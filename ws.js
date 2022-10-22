@@ -13,7 +13,7 @@ app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
-app.set('port', process.env.port || 8000)
+app.set('port', process.env.PORT || 8000)
 
 app.get('/', (req, res) => res.render('index.html'))
 let secretWord = undefined;
