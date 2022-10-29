@@ -92,6 +92,6 @@
   width: 90%;
   margin-top: 15%;
   overflow-y: auto;
-  max-height: 150px;
-  height: 150px;
+  height: 60%;
+  max-height: 500px;
 }

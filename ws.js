@@ -47,7 +47,10 @@ const GenereteWord = () => {
   secretWord = word
   return word
 }
+var user = []
 io.on('connection', (socket) => {
+  user.push(socket.id);
+  socket.emit('connection',{user:user} )
   socket.on('draw', (e) => {
     io.emit('desenhe', { cord: e, user: socket.id, color: e.color, widthStroke: e.widthStroke, type: e.type, coodinates: e.coodinates });
   });
@@ -65,6 +68,12 @@ io.on('connection', (socket) => {
     console.log(e);
     io.emit('feed', { response:secretWord.word === e.answer, try:e, user: socket.id})
   });
+  socket.on('disconnect',(reason) => {
+    console.log(socket.id);
+    const newUsers = user.filter((e) => e !== socket.id)
+    user = newUsers
+    socket.emit('connection',{user:user} )
+  })
 });
 
 

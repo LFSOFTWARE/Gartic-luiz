@@ -1,10 +1,11 @@
-
 var socket = io();
 
 socket.emit('makeWord', () => {
 
 })
-
+socket.on('connection',(msg)=>{
+  console.log(msg)
+})
 socket.on('desenhe', (msg) => {
   if (msg.user !== socket.id) {
     draw2(msg.cord, msg.color, msg.widthStroke, msg.type, msg.coodinates)
@@ -14,9 +15,7 @@ socket.on('desenhe', (msg) => {
   }
 
 })
-
 socket.on('word', (msg) => {
-  console.log(msg.word.word.length);
   document.getElementById("word").innerHTML = msg.word.categoria
   document.getElementById("dica").innerHTML = ''
 
@@ -24,9 +23,7 @@ socket.on('word', (msg) => {
     document.getElementById("dica").innerHTML += '_ '
   }
 })
-
 socket.on('feed', (msg) => {
-  console.log(msg.response);
   if (msg.response) {
     document.getElementById('boxAnswer').innerHTML += `<p style="background:green">${msg.try.answer}</p>`
     socket.emit('makeWord', () => {
@@ -34,10 +31,29 @@ socket.on('feed', (msg) => {
   } else {
     document.getElementById('boxAnswer').innerHTML += `<p>${msg.try.answer}</p>`
   }
-
+  var el = document.getElementById('boxAnswer');
+  el.scrollTop = el.clientHeight;
 })
 
+//Canvas
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext('2d')
 
+//Resizing 
+canvas.height = window.innerHeight
+canvas.width = 900
+
+//Variables
+let paiting = false
+let color = 'black'
+let widthStroke = 5
+let type = 'line'
+let coodinates = {
+  start: { x: 0, y: 0 },
+  end: { x: 0, y: 0 }
+}
+
+//Functions
 const sendAnswers = () => {
   let input = document.getElementById('answer');
   if (input.value !== '') {
@@ -48,26 +64,6 @@ const sendAnswers = () => {
   }
   input.value = '';
 }
-
-//Canvas
-const canvas = document.getElementById("canvas")
-const ctx = canvas.getContext('2d')
-
-//Resizing 
-canvas.height = window.innerHeight
-canvas.width = 1000
-
-//Variables
-let paiting = false
-let color = 'black'
-let widthStroke = 5
-let type = 'line'
-
-let coodinates = {
-  start: { x: 0, y: 0 },
-  end: { x: 0, y: 0 }
-}
-//Functions 
 const changeColor = (clr) => {
   color = clr
 }
@@ -90,7 +86,6 @@ const finishPosition = (e) => {
   ctx.beginPath();
   socket.emit('finish', { msg: true });
   // if(type === 'circle') {
-
   //  drawCircle(e);
   //  socket.emit('draw', { clientX: e.clientX, clientY: e.clientY, color: color, widthStroke: widthStroke, type: type, coodinates:coodinates })
   // }
@@ -179,8 +174,12 @@ const drawCircle2 = (e, color2, coodinates2) => {
 
 }
 
-
 //EventListener
 canvas.addEventListener("mousedown", startPosition)
 canvas.addEventListener("mouseup", finishPosition)
 canvas.addEventListener("mousemove", draw)
+document.addEventListener('keypress', function(e){
+  if(e.which == 13){
+    sendAnswers()
+  }
+}, false);
